@@ -16,12 +16,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, rgba(102, 255, 102, 0.6), rgba(255, 102, 102, 0.6), rgba(153, 102, 255, 0.6));
-            background-blend-mode: overlay;
+            background: #001f3f; /* Navy Blue */
         }
 
         .form-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             padding: 40px 30px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
@@ -30,7 +29,7 @@
 
         h2 {
             text-align: center;
-            color: #4a2c2a;
+            color: #001f3f;
             margin-bottom: 30px;
         }
 
@@ -42,6 +41,7 @@
         label {
             margin-bottom: 5px;
             font-weight: 500;
+            color: #001f3f;
         }
 
         input[type="text"],
@@ -49,7 +49,7 @@
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #001f3f;  /* Navy border */
             font-size: 16px;
             width: 100%;
         }
@@ -58,7 +58,7 @@
             padding: 12px;
             border: none;
             border-radius: 10px;
-            background: linear-gradient(135deg, #66ff66, #ff6666, #9966ff);
+            background: #001f3f;  /* Navy button */
             color: #fff;
             font-size: 16px;
             cursor: pointer;
@@ -66,17 +66,18 @@
         }
 
         input[type="submit"]:hover {
-            filter: brightness(1.2);
+            background: #003366; /* Lighter navy */
         }
 
         p {
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
+            color: #001f3f;
         }
 
         a {
-            color: #9966ff;
+            color: #003366;
             text-decoration: none;
             font-weight: bold;
         }
@@ -92,11 +93,14 @@
         book book = (book) request.getAttribute("book");
         boolean isEdit = (book != null);
     %>
+
     <h2><%= isEdit ? "Edit Book" : "Add New Book" %></h2>
+
     <form action="BookServlet" method="post">
-        <input type="hidden" name="action" value="<%= isEdit ? "update" : "insert" %>" />
+        <input type="hidden" name="action" value="<%= isEdit ? "update" : "insert" %>"/>
+
         <% if (isEdit) { %>
-        <input type="hidden" name="id" value="<%= book.getId() %>" />
+        <input type="hidden" name="id" value="<%= book.getId() %>"/>
         <% } %>
 
         <label>Title:</label>
@@ -106,13 +110,14 @@
         <input type="text" name="author" value="<%= isEdit ? book.getAuthor() : "" %>" required />
 
         <label>Category:</label>
-        <input type="text" name="category" value="<%= isEdit ? book.getCategory() : "" %>" />
+        <input type="text" name="category" value="<%= isEdit ? book.getCategory() : "" %>"/>
 
         <label>Quantity:</label>
         <input type="number" name="quantity" value="<%= isEdit ? book.getQuantity() : 1 %>" min="0" required />
 
         <input type="submit" value="<%= isEdit ? "Update" : "Add" %>" />
     </form>
+
     <p><a href="BookServlet?action=list">Back to list</a></p>
 </div>
 </body>

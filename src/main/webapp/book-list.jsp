@@ -7,21 +7,21 @@
     <title>Books</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, rgba(102, 255, 102, 0.6), rgba(255, 102, 102, 0.6), rgba(153, 102, 255, 0.6));
-            background-blend-mode: overlay;
+            background: #001f3f; /* Navy background */
         }
 
         .container {
             width: 90%;
             max-width: 900px;
             margin: 40px auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
@@ -29,7 +29,7 @@
 
         h2 {
             text-align: center;
-            color: #4a2c2a;
+            color: #001f3f;
             margin-bottom: 20px;
         }
 
@@ -41,14 +41,14 @@
         a {
             text-decoration: none;
             font-weight: bold;
-            color: #9966ff;
+            color: #003366;
             margin: 0 10px;
             transition: all 0.3s ease;
         }
 
         a:hover {
             text-decoration: underline;
-            color: #ff6666;
+            color: #001f3f;
         }
 
         table {
@@ -59,32 +59,38 @@
 
         th, td {
             padding: 12px 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #001f3f55;
             text-align: center;
-            border-radius: 5px;
         }
 
         th {
-            background: linear-gradient(135deg, #66ff66, #ff6666, #9966ff);
-            color: #fff;
+            background: #001f3f; /* Navy header */
+            color: white;
         }
 
         tr:nth-child(even) {
-            background: rgba(240, 240, 240, 0.6);
+            background: #f2f2f2; /* Light grey */
         }
 
         tr:hover {
-            background: rgba(200, 200, 255, 0.4);
+            background: #e6f0ff; /* Soft light blue */
         }
 
         .action-links a {
             margin: 0 5px;
+            color: #003366;
+        }
+
+        .action-links a:hover {
+            color: #001f3f;
         }
     </style>
 </head>
+
 <body>
 <div class="container">
     <h2>Books</h2>
+
     <p>
         <a href="BookServlet?action=new">Add New Book</a> |
         <a href="logout">Logout</a>
@@ -99,11 +105,13 @@
             <th>Qty</th>
             <th>Actions</th>
         </tr>
+
         <%
             List<book> list = (List<book>) request.getAttribute("listBook");
             if (list != null) {
                 for (book b : list) {
         %>
+
         <tr>
             <td><%= b.getId() %></td>
             <td><%= b.getTitle() %></td>
@@ -115,11 +123,14 @@
                 <a href="BookServlet?action=delete&id=<%=b.getId()%>" onclick="return confirm('Delete?')">Delete</a>
             </td>
         </tr>
+
         <%
                 }
             }
         %>
+
     </table>
 </div>
 </body>
 </html>
+
